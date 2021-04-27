@@ -20,4 +20,8 @@ class DiscountCodeTest extends TestCase
             ->create();
     }
 
+    public function test_factory()
+    {
+        self::assertInstanceOf(DiscountCode::class, $this->discountCode);
+    }
 }

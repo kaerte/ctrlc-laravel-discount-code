@@ -16,14 +16,14 @@ class CreateDiscountCodesTable extends Migration
         Schema::create('discount_codes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('code')->unique()->comment('discount code');
-            $table->double('amount', 8, 4);
-            $table->integer('amount_type')->comment('0 = percentage,  1 = money discount');
-            $table->string('title')->nullable()->comment('Will appear when discount code is used');
+            $table->string('code')->unique();
+            $table->unsignedBigInteger('value');
+            $table->unsignedTinyInteger('type');
+            $table->string('title');
             $table->string('description')->nullable();
-            $table->timestamp('starts_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->timestamp('expires_at')->nullable()->default(null);
-            $table->boolean('active')->default(0);
+            $table->timestamp('active_from')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('active_to')->nullable();
+            $table->boolean('enabled')->default(0);
             $table->softDeletes();
         });
     }

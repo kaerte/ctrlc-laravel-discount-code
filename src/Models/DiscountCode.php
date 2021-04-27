@@ -3,13 +3,15 @@
 namespace Ctrlc\DiscountCode\Models;
 
 use Carbon\Carbon;
+use Ctrlc\DiscountCode\Database\Factories\DiscountCodeFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DiscountCode extends Model
 {
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $dates = [
         'created_at',
@@ -63,5 +65,10 @@ class DiscountCode extends Model
     public function scopeOfStarted($query)
     {
         return  $query->where('starts_at', '<=', Carbon::now());
+    }
+
+    protected static function newFactory(): DiscountCodeFactory
+    {
+        return DiscountCodeFactory::new();
     }
 }
