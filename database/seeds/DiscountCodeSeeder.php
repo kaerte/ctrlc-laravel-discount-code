@@ -1,11 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Ctrlc\DiscountCode\Seeds;
 
-use Illuminate\Database\Seeder;
-use Ctrlc\DiscountCode\Models\DiscountCode;
 use Carbon\Carbon;
+use Ctrlc\DiscountCode\Models\DiscountCode;
 use DB;
+use Illuminate\Database\Seeder;
 
 class DiscountCodeSeeder extends Seeder
 {
@@ -23,7 +23,7 @@ class DiscountCodeSeeder extends Seeder
             'active'=> 1,
             'amount' => 10,
             'amount_type' => DiscountCode::TYPE_PERCENTAGE,
-            'title' => '10% off'
+            'title' => '10% off',
         ]);
 
         DB::table(config('ctrlc.discount-code.table_name'))->insertGetId([
@@ -33,7 +33,7 @@ class DiscountCodeSeeder extends Seeder
             'active'=> 1,
             'amount' => 20,
             'amount_type' => DiscountCode::TYPE_MONEY,
-            'title' => '20 GBP off'
+            'title' => '20 GBP off',
         ]);
 
         DB::table(config('ctrlc.discount-code.table_name'))->insertGetId([
@@ -43,7 +43,7 @@ class DiscountCodeSeeder extends Seeder
             'active'=> 1,
             'amount' => 20,
             'amount_type' => DiscountCode::TYPE_MONEY,
-            'title' => '20 GBP off'
+            'title' => '20 GBP off',
         ]);
     }
 }

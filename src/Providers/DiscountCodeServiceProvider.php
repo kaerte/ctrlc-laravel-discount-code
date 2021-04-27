@@ -17,7 +17,6 @@ class DiscountCodeServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(dirname(__DIR__, 2) . '/config/config.php', 'ctrlc.discount-code');
         // Bind eloquent models to IoC container
         //$this->app->singleton('ctrlc.discount-code',GeoCoding::class);
-
     }
 
     /**

@@ -1,13 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Ctrlc\DiscountCode\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
-
 
 class DiscountCode extends Model
 {
@@ -18,13 +16,13 @@ class DiscountCode extends Model
         'updated_at',
         'expires_at',
         'starts_at',
-        'deleted_at'
+        'deleted_at',
     ];
 
     protected $casts = [
         'amount' => 'double',
         'amount_type' => 'integer',
-        'active' => 'boolean'
+        'active' => 'boolean',
     ];
 
     const TYPE_PERCENTAGE = 0;
@@ -42,16 +40,17 @@ class DiscountCode extends Model
         $this->setTable(config('ctrlc.discount-code.table_name'));
     }
 
-
     //CUSTOM ATTRIBUTES
     public function getFormattedAmountAttribute()
     {
         switch ($this->amount_type) {
             case (self::TYPE_MONEY):
                 return currency_format((float) $this->amount, 'GBP');
+
                 break;
             case (self::TYPE_PERCENTAGE):
                 return number_format($this->amount, 1) . '%';
+
                 break;
         }
     }

@@ -1,14 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace Ctrlc\DiscountCode\Rules;
 
-use Ctrlc\DiscountCode\Models\DiscountCode;
 use Carbon\Carbon;
+use Ctrlc\DiscountCode\Models\DiscountCode;
 use Illuminate\Contracts\Validation\Rule;
 
 class ValidDiscountCodeRule implements Rule
 {
     protected $custom_message = '';
+
     /**
      * Create a new rule instance.
      *
@@ -36,11 +37,13 @@ class ValidDiscountCodeRule implements Rule
 
         if (!$code) {
             $this->custom_message = 'The discount code is invalid';
+
             return false;
         }
 
         if ($code->expires_at <= Carbon::now()) {
             $this->custom_message = 'The discount code is expired';
+
             return false;
         }
 
