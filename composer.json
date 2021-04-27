@@ -1,0 +1,37 @@
+{
+    "name": "ctrlc/discount-code",
+    "description": "Discount code",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Lukasz",
+            "email": "d@dd.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ctrlc\\DiscountCode\\": "src/",
+            "Ctrlc\\DiscountCode\\Seeds\\": "database/seeds/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ctrlc\\DiscountCode\\Providers\\DiscountCodeServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
