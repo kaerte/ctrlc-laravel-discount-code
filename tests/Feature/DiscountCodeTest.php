@@ -2,6 +2,7 @@
 
 namespace Ctrlc\DiscountCode\Tests\Feature;
 
+use Ctrlc\DiscountCode\Models\DiscountCode;
 use Ctrlc\DiscountCode\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -9,68 +10,14 @@ class DiscountCodeTest extends TestCase
 {
     use RefreshDatabase;
 
-    public Product $product;
+    public DiscountCode $discountCode;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->product = Product::factory()
-            ->hasVariants(1, [
-                'default' => 1,
-            ])
+        $this->discountCode = DiscountCode::factory()
             ->create();
     }
 
-    public function test_product_creation(): void
-    {
-        $product = $this->product;
-
-        $this->assertDatabaseHas('product_variants', [
-            'name' => $product->variant->name,
-            'default' => 1,
-        ]);
-
-        self::assertInstanceOf($product::class, $product->variant->item);
-    }
-
-    public function test_add_to_basket_total(): void
-    {
-        $product = $this->product;
-
-        Basket::add($product->variant)
-            ->add($product->variant);
-
-        self::assertEquals($product->price*2, Basket::total());
-    }
-
-    public function test_add_to_basket_quantity(): void
-    {
-        $product = $this->product;
-        $basket = Basket::add($product->variant)
-            ->add($product->variant);
-
-        self::assertEquals(2, $basket->items->first()->quantity);
-    }
-
-    public function test_remove_from_basket(): void
-    {
-        $product = $this->product;
-        $basket = Basket::add($product->variant)
-            ->add($product->variant)
-            ->remove($product->variant);
-
-        self::assertEquals(1, $basket->items->first()->quantity);
-    }
-
-    public function test_remove_all_from_basket(): void
-    {
-        $product = $this->product;
-        $basket = Basket::add($product->variant)
-            ->add($product->variant)
-            ->remove($product->variant, 2);
-
-        self::assertEmpty($basket->items);
-        self::assertEquals(0, Basket::total());
-    }
 }

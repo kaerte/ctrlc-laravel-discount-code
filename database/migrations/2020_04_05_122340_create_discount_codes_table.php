@@ -13,7 +13,7 @@ class CreateDiscountCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('ctrlc.discount-code.table_name'), function (Blueprint $table) {
+        Schema::create('discount_codes', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('code')->unique()->comment('discount code');
@@ -35,6 +35,6 @@ class CreateDiscountCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('ctrlc.discount-code.table_name'));
+        Schema::dropIfExists('discount_codes');
     }
 }

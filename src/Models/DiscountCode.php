@@ -28,18 +28,6 @@ class DiscountCode extends Model
     const TYPE_PERCENTAGE = 0;
     const TYPE_MONEY = 1;
 
-    /**
-     * Create a new Eloquent model instance.
-     *
-     * @param array $attributes
-     */
-    public function __construct(array $attributes = [])
-    {
-        parent::__construct($attributes);
-
-        $this->setTable(config('ctrlc.discount-code.table_name'));
-    }
-
     //CUSTOM ATTRIBUTES
     public function getFormattedAmountAttribute()
     {

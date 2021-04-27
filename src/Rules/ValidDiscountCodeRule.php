@@ -10,23 +10,6 @@ class ValidDiscountCodeRule implements Rule
 {
     protected $custom_message = '';
 
-    /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
-     */
     public function passes($attribute, $value)
     {
         $code = DiscountCode
@@ -50,11 +33,6 @@ class ValidDiscountCodeRule implements Rule
         return true;
     }
 
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
     public function message()
     {
         return $this->custom_message ? $this->custom_message : 'The discount code is invalid..';
