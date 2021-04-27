@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ctrlc\Basket\Tests;
+namespace Ctrlc\DiscountCode\Tests;
 
 use Ctrlc\DiscountCode\Providers\DiscountCodeServiceProvider;
 

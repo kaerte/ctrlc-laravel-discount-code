@@ -1,10 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Ctrlc\Basket\Tests\Feature;
+namespace Ctrlc\DiscountCode\Tests\Feature;
 
-use Ctrlc\Basket\Facades\Basket;
-use Ctrlc\Basket\Models\Product;
-use Ctrlc\Basket\Tests\TestCase;
+use Ctrlc\DiscountCode\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DiscountCodeTest extends TestCase
