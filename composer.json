@@ -10,13 +10,12 @@
     ],
     "require": {
         "php": "^8.0.2",
-        "spatie/enum": "^3.8"
+        "spatie/laravel-enum": "^2.4"
     },
     "autoload": {
         "psr-4": {
             "Ctrlc\\DiscountCode\\": "src/",
-            "Ctrlc\\DiscountCode\\Database\\Factories\\": "database/factories",
-            "Ctrlc\\DiscountCode\\Seeds\\": "database/seeds/"
+            "Ctrlc\\DiscountCode\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {

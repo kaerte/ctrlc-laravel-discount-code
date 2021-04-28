@@ -3,13 +3,12 @@
 namespace Ctrlc\DiscountCode\Database\Factories;
 
 use Carbon\Carbon;
-use Ctrlc\DiscountCode\Enums\DiscountCodeType;
+use Ctrlc\DiscountCode\Enums\DiscountCodeTypeEnum;
 use Ctrlc\DiscountCode\Models\DiscountCode;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
-use Spatie\Enum\Faker\FakerEnumProvider;
-use Faker\Generator as Faker;
+use Spatie\Enum\Laravel\Faker\FakerEnumProvider;
 
 class DiscountCodeFactory extends Factory
 {
@@ -17,19 +16,75 @@ class DiscountCodeFactory extends Factory
 
     public function definition()
     {
-        /** @var Faker|FakerEnumProvider $faker */
-        $faker = new Faker();
-        $faker->addProvider(new FakerEnumProvider($faker));
+        FakerEnumProvider::register();
 
         return [
             'code' => Str::random(),
-            'value' => rand(0, 1000),
-            'type' => $faker->randomEnumValue(DiscountCodeType::class),
+            'value' => rand(10, 1000),
+            'type' => $this->faker->randomEnumValue(DiscountCodeTypeEnum::class),
             'title' => $this->faker->colorName . ' discount code',
             'description' => $this->faker->text,
             'active_from' => Carbon::now(),
             'active_to' => Carbon::now()->addWeek(),
             'enabled' => $this->faker->boolean(),
         ];
+    }
+
+    public function percent()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => DiscountCodeTypeEnum::PERCENT(),
+                'value' => rand(1, 100),
+            ];
+        });
+    }
+
+    public function money()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'type' => DiscountCodeTypeEnum::MONEY(),
+                'value' => rand(10, 200),
+            ];
+        });
+    }
+
+    public function active()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'active_from' => Carbon::now()->subSecond(),
+                'active_to' => Carbon::now()->addSecond(),
+                'enabled' => true,
+            ];
+        });
+    }
+
+    public function expired()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'active_to' => Carbon::now()->subSecond(),
+            ];
+        });
+    }
+
+    public function enabled()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'enabled' => true,
+            ];
+        });
+    }
+
+    public function disabled()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'enabled' => false,
+            ];
+        });
     }
 }
