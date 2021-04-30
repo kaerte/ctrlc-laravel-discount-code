@@ -1,6 +1,6 @@
 {
-    "name": "ctrlc/discount-code",
-    "description": "Discount code module",
+    "name": "ctrlc/laravel-discount-code",
+    "description": "Discount code model",
     "type": "library",
     "authors": [
         {
