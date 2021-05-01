@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Ctrlc\DiscountCode\Rules;
 
@@ -7,7 +9,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class DiscountCodeRule implements Rule
 {
-    protected string|array $message;
+    protected string | array $message;
 
     public function passes($attribute, $value): bool
     {
@@ -15,7 +17,7 @@ class DiscountCodeRule implements Rule
             ->where('code', $value)
             ->first();
 
-        if (!$code || !$code->enabled) {
+        if (! $code || ! $code->enabled) {
             $this->message = __('ctrlc_discount_code::messages.code_not_found');
 
             return false;
@@ -30,7 +32,7 @@ class DiscountCodeRule implements Rule
         return true;
     }
 
-    public function message(): array|string
+    public function message(): array | string
     {
         return $this->message;
     }

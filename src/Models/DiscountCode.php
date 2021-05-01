@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Ctrlc\DiscountCode\Models;
 
@@ -6,7 +8,6 @@ use Ctrlc\DiscountCode\Database\Factories\DiscountCodeFactory;
 use Ctrlc\DiscountCode\Enums\DiscountCodeTypeEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DiscountCode extends Model
