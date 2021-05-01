@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Ctrlc\DiscountCode\Database\Factories;
 
@@ -7,7 +9,6 @@ use Ctrlc\DiscountCode\Enums\DiscountCodeTypeEnum;
 use Ctrlc\DiscountCode\Models\DiscountCode;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-
 use Spatie\Enum\Laravel\Faker\FakerEnumProvider;
 
 class DiscountCodeFactory extends Factory
@@ -22,7 +23,7 @@ class DiscountCodeFactory extends Factory
             'code' => Str::random(),
             'value' => rand(10, 1000),
             'type' => $this->faker->randomEnumValue(DiscountCodeTypeEnum::class),
-            'title' => $this->faker->colorName . ' discount code',
+            'title' => $this->faker->colorName.' discount code',
             'description' => $this->faker->text,
             'active_from' => Carbon::now(),
             'active_to' => Carbon::now()->addWeek(),
