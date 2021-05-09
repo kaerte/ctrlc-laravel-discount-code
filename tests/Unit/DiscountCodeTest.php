@@ -55,6 +55,7 @@ class DiscountCodeTest extends TestCase
     public function test_expired(): void
     {
         $discountCode = DiscountCode::factory()
+            ->enabled()
             ->expired()
             ->make();
 

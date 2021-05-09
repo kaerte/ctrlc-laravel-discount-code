@@ -14,12 +14,13 @@ class ApiDiscountCodeTest extends TestCase
 
     public function test_api_valid_discount_code(): void
     {
-        $discountCode = DiscountCode::factory()
+        $discountCodes = DiscountCode::factory()
+            ->count(10)
             ->active()
             ->create();
 
         $response = $this->postJson(route('api.discount-code.check'), [
-            'code' => $discountCode->code,
+            'code' => $discountCodes->first()->code,
         ]);
 
         $response->assertJsonStructure([
@@ -51,6 +52,7 @@ class ApiDiscountCodeTest extends TestCase
     public function test_api_expired_discount_code(): void
     {
         $discountCode = DiscountCode::factory()
+            ->enabled()
             ->expired()
             ->create();
 

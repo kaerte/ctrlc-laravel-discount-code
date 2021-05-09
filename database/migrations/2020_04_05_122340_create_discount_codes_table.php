@@ -20,7 +20,7 @@ class CreateDiscountCodesTable extends Migration
             $table->timestamps();
             $table->string('code')->unique();
             $table->unsignedBigInteger('value');
-            $table->unsignedTinyInteger('type');
+            $table->string('type', 10)->index();
             $table->string('title');
             $table->string('description')->nullable();
             $table->timestamp('active_from')->default(DB::raw('CURRENT_TIMESTAMP'));

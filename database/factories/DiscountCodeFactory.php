@@ -27,7 +27,7 @@ class DiscountCodeFactory extends Factory
             'description' => $this->faker->text,
             'active_from' => Carbon::now(),
             'active_to' => Carbon::now()->addWeek(),
-            'enabled' => $this->faker->boolean(),
+            'enabled' => false,
         ];
     }
 
@@ -55,8 +55,8 @@ class DiscountCodeFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'active_from' => Carbon::now()->subSecond(),
-                'active_to' => Carbon::now()->addSecond(),
+                'active_from' => Carbon::now()->subHour(),
+                'active_to' => Carbon::now()->addHour(),
                 'enabled' => true,
             ];
         });
@@ -66,7 +66,7 @@ class DiscountCodeFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'active_to' => Carbon::now()->subSecond(),
+                'active_to' => Carbon::now()->subHour(),
             ];
         });
     }
