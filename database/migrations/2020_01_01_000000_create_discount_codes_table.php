@@ -21,8 +21,8 @@ class CreateDiscountCodesTable extends Migration
             $table->string('code')->unique();
             $table->unsignedBigInteger('value');
             $table->string('type', 10)->index();
-            $table->string('title');
-            $table->string('description')->nullable();
+            $table->string('title')->comment('Public');
+            $table->string('description')->nullable()->comment('Admin only');
             $table->timestamp('active_from')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('active_to')->nullable();
             $table->boolean('enabled')->default(0);

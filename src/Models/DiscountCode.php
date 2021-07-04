@@ -18,6 +18,7 @@ class DiscountCode extends Model
         'code',
         'type',
         'value',
+        'title',
     ];
 
     protected $dates = [
